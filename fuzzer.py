@@ -30,13 +30,13 @@ print("\033[1;32m-----------------------------\033[1;m")
 choice = int(choice)
 
 if choice == 1:
-    url=raw_input("Website URL:")
+    url=input("Website URL:")
     req = requests.get(url)
     print("\033[1;32m---------------------------------------------\033[1;m")
     print("Starting Information Gathering , Connecting to the URL..!")
     print("\033[1;32m---------------------------------------------\033[1;m")
     print("Status Code:",req.status_code)
-spl=req.headers
+    spl=req.headers
     print("\033[1;32m---------------------------------------------\033[1;m")
     print("\033[1;32mHTTP Headers\033[1;m")
     print("\033[1;32m---------------------------------------------\033[1;m")
@@ -78,7 +78,8 @@ spl=req.headers
     print(file)
     print("\033[1;32m---------------------------------------------\033[1;m")
     print("\033[1;32mSSL Ciphers Suites\033[1;m")
-    print("\033[1;32m---------------------------------------------\033[1;m") nm="nmap -v --script ssl-enum-ciphers bigsmartdeals.com"
+    print("\033[1;32m---------------------------------------------\033[1;m") 
+    nm="nmap -v --script ssl-enum-ciphers bigsmartdeals.com"
     print(os.system(nm))
     #print()
     """qtype in ['A','AAAA','CNAME','MX','NS']:
@@ -89,7 +90,7 @@ elif choice == 2:
         print("---------------------------------------------")
         print("\nStarting XSS Checker")
         print("---------------------------------------------")
-        url = raw_input("Website URL:")
+        url = input("Website URL:")
         req=requests.get(url)
         #browser = mechanicalsoup.StatefulBrowser()
         #browser.get_current_page()
@@ -119,7 +120,7 @@ elif choice == 2:
                 brobj.form[inputfields[i]] = "Any text for filling other fields incase of multiple fields"
         brobj.submit()
         finalResult = brobj.response().read()
- if finalResult.find('&lt;script&gt;')>=0:
+        if finalResult.find('&lt;script&gt;')>=0:
                 print("\033[1;32m---------------------------------------------\033[1;m")
                 print("Application is XSS vulnerable")
                 print("\033[1;32m---------------------------------------------\033[1;m")
